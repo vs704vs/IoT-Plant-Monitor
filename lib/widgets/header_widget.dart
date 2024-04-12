@@ -25,6 +25,13 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
           ),
+        Text(
+          'Farm Monitor',
+          style: TextStyle(
+            fontSize: 20, // Adjust the font size as needed
+            fontWeight: FontWeight.w600, // You can change the font weight if needed
+          ),
+        ),
         if (!Responsive.isMobile(context))
           Expanded(
             child: TextField(
@@ -56,14 +63,6 @@ class HeaderWidget extends StatelessWidget {
         if (Responsive.isMobile(context))
           Row(
             children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                  size: 25,
-                ),
-                onPressed: () {},
-              ),
               InkWell(
                 onTap: () => Scaffold.of(context).openEndDrawer(),
                 child: CircleAvatar(

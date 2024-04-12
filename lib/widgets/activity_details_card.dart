@@ -66,8 +66,9 @@ Widget build(BuildContext context) {
             children: [
               Image.asset(
                 healthDetails.healthData[index].icon,
-                width: 30,
-                height: 30,
+                width: 50,
+                height: 50,
+                colorBlendMode: BlendMode.lighten,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 15, bottom: 4),

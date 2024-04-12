@@ -8,6 +8,6 @@ class HealthDetails {
         icon: 'assets/images/temperature.png', value: "34°C", title: "Temperature"),
     HealthModel(
         icon: 'assets/images/moisture.png', value: "60%", title: "Moisture"),
-    HealthModel(icon: 'assets/icons/sleep.png', value: "7h48m", title: "Start Pump"),
+    HealthModel(icon: 'assets/images/motor.png', value: "7h48m", title: "Start Pump"),
   ];
 }

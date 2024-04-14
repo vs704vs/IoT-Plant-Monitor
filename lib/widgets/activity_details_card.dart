@@ -37,9 +37,7 @@ class _ActivityDetailsCardState extends State<ActivityDetailsCard> {
     return FutureBuilder<List<HealthModel>>(
       future: _healthDataFuture,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
+         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
           List<HealthModel>? healthDetails = snapshot.data;

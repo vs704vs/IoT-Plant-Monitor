@@ -1,12 +1,36 @@
+import 'dart:async';
+
 import 'package:fitness_dashboard_ui/const/constant.dart';
 import 'package:fitness_dashboard_ui/data/line_chart_data3.dart';
 import 'package:fitness_dashboard_ui/widgets/custom_card_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class LineChartCard3 extends StatelessWidget {
-  const LineChartCard3({super.key});
-  
+class LineChartCard3 extends StatefulWidget {
+  const LineChartCard3({Key? key}) : super(key: key);
+
+  @override
+  _LineChartCard1State createState() => _LineChartCard1State();
+}
+
+class _LineChartCard1State extends State<LineChartCard3> {
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(Duration(seconds: 15), (Timer t) {
+      // Call fetchData() every 15 seconds
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer when the widget is disposed
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<String, dynamic>>(
@@ -20,15 +44,12 @@ class LineChartCard3 extends StatelessWidget {
           final flSpots = snapshot.data!['flSpots'];
           final titles = snapshot.data!['titles'];
 
-          // print(flSpots);
-          // print(titles);
-
           return CustomCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Moisture over Time",
+                  "Temperature over Time",
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 20),

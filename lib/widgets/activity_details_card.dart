@@ -3,6 +3,7 @@ import 'package:fitness_dashboard_ui/data/health_details.dart';
 import 'package:fitness_dashboard_ui/model/health_model.dart';
 import 'package:fitness_dashboard_ui/util/responsive.dart';
 import 'package:fitness_dashboard_ui/widgets/custom_card_widget.dart';
+import 'package:http/http.dart' as http;
 
 class ActivityDetailsCard extends StatefulWidget {
   const ActivityDetailsCard({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class ActivityDetailsCard extends StatefulWidget {
 
 class _ActivityDetailsCardState extends State<ActivityDetailsCard> {
   late Future<List<HealthModel>> _healthDataFuture;
+  bool isPressed = false;
 
   @override
   void initState() {
@@ -32,12 +34,28 @@ class _ActivityDetailsCardState extends State<ActivityDetailsCard> {
     });
   }
 
+  void callApi(int val) async {
+    print(isPressed);
+    print(val);
+    var url = Uri.parse(
+        'https://api.thingspeak.com/update?api_key=WV21A4ZVS3Q6SQX5&field4=' +
+            val.toString());
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        print('Horray ho gaya!!');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<HealthModel>>(
       future: _healthDataFuture,
       builder: (context, snapshot) {
-         if (snapshot.hasError) {
+        if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
           List<HealthModel>? healthDetails = snapshot.data;
@@ -57,7 +75,14 @@ class _ActivityDetailsCardState extends State<ActivityDetailsCard> {
                   color: const Color.fromARGB(255, 224, 224, 224),
                   child: ElevatedButton(
                     onPressed: () {
-                      // handle click
+                      setState(() {
+                        isPressed = !isPressed;
+                        if (isPressed) {
+                          callApi(1);
+                        } else {
+                          callApi(0);
+                        }
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(10),
@@ -68,7 +93,9 @@ class _ActivityDetailsCardState extends State<ActivityDetailsCard> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset(
-                          healthDetails != null ? healthDetails[index].icon : "",
+                          healthDetails != null
+                              ? healthDetails[index].icon
+                              : "",
                           width: 60,
                           height: 60,
                         ),
@@ -79,7 +106,9 @@ class _ActivityDetailsCardState extends State<ActivityDetailsCard> {
                           height: 10,
                         ),
                         Text(
-                          healthDetails != null ? healthDetails[index].title : "",
+                          healthDetails != null
+                              ? healthDetails[index].title
+                              : "",
                           style: const TextStyle(
                             fontSize: 16,
                             color: Color.fromARGB(255, 58, 58, 58),
@@ -105,7 +134,9 @@ class _ActivityDetailsCardState extends State<ActivityDetailsCard> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 4),
                         child: Text(
-                          healthDetails != null ? healthDetails[index].value.toString() : "", // Convert double to String
+                          healthDetails != null
+                              ? healthDetails[index].value.toString()
+                              : "", // Convert double to String
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,

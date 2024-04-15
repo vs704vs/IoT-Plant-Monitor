@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class LineData2 {
   Future<Map<String, dynamic>> fetchData() async {
     final url =
-        'https://api.thingspeak.com/channels/2505530/feeds.json?api_key=J2BXJBBW7WYO18GJ&results=120';
+        'https://api.thingspeak.com/channels/2508293/feeds.json?api_key=COHTYE7FEJVYM8PU&results=120';
     List<FlSpot> flSpots = [];
     Map<String, dynamic> titles = {};
 

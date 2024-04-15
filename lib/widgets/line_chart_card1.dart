@@ -1,12 +1,36 @@
+import 'dart:async';
+
 import 'package:fitness_dashboard_ui/const/constant.dart';
 import 'package:fitness_dashboard_ui/data/line_chart_data1.dart';
 import 'package:fitness_dashboard_ui/widgets/custom_card_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class LineChartCard1 extends StatelessWidget {
-  const LineChartCard1({super.key});
-  
+class LineChartCard1 extends StatefulWidget {
+  const LineChartCard1({Key? key}) : super(key: key);
+
+  @override
+  _LineChartCard1State createState() => _LineChartCard1State();
+}
+
+class _LineChartCard1State extends State<LineChartCard1> {
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(Duration(seconds: 15), (Timer t) {
+      // Call fetchData() every 15 seconds
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer when the widget is disposed
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<String, dynamic>>(
@@ -19,9 +43,6 @@ class LineChartCard1 extends StatelessWidget {
         } else {
           final flSpots = snapshot.data!['flSpots'];
           final titles = snapshot.data!['titles'];
-
-          // print(flSpots);
-          // print(titles);
 
           return CustomCard(
             child: Column(

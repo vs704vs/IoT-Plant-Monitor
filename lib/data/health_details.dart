@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class HealthDetails {
   Future<List<String>> fetchDataFromAPI() async {
     var url = Uri.parse(
-        'https://api.thingspeak.com/channels/2505530/feeds.json?api_key=J2BXJBBW7WYO18GJ&results=1');
+        'https://api.thingspeak.com/channels/2508293/feeds.json?api_key=COHTYE7FEJVYM8PU&results=1');
 
     try {
       var response = await http.get(url);

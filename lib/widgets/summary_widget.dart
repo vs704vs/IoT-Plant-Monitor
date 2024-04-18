@@ -31,7 +31,7 @@ class SummaryWidget extends StatelessWidget {
                 height: 15,
               ),
               const Text(
-                "Summer",
+                "Dmantz Technologies",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const SizedBox(

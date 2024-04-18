@@ -26,7 +26,7 @@ class HeaderWidget extends StatelessWidget {
             ),
           ),
         Text(
-          'Farm Monitor',
+          'FarmAssist',
           style: TextStyle(
             fontSize: 20, // Adjust the font size as needed
             fontWeight: FontWeight.w600, // You can change the font weight if needed

@@ -49,7 +49,7 @@ class _LineChartCard1State extends State<LineChartCard3> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Temperature over Time",
+                  "Moisture over Time",
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 20),
